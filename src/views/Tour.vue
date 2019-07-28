@@ -2,8 +2,8 @@
   <v-content>
     <v-container fluid pa-0>
       <v-img :src="`https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`"
-             width="100vw" height="100vh">
-        <youtube :width="playerWidth"
+             width="100vw" height="100vh" @click="playVideo">
+        <youtube v-show="!loading" :width="playerWidth"
                  :height="playerHeight"
                  :video-id="videoId"
                  :player-vars="playerOptions"
@@ -70,6 +70,7 @@
       onReadyVideo () {
         if (this.isActive) {
           this.playVideo();
+          this.loading = false;
           this.player.getDuration().then(response => {
             this.videoDuration = response - 1;
           });
@@ -87,6 +88,7 @@
       },
       playVideo () {
         this.player.playVideo();
+        this.loading = false;
       },
       onPlayingVideo () {
         this.loading = false;

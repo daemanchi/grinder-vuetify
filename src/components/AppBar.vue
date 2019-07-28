@@ -1,7 +1,7 @@
 <template>
   <v-app-bar dense color="transparent" flat fixed>
 
-    <v-btn icon small>
+    <v-btn icon small to="/@myId">
       <v-icon>mdi-menu</v-icon>
     </v-btn>
 
@@ -21,7 +21,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn icon to="/cart">
+    <v-btn icon small to="/cart">
       <v-icon>mdi-cart-outline</v-icon>
     </v-btn>
 
