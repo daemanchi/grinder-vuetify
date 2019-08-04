@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <v-toolbar dense flat absolute color="transparent">
+    <v-toolbar dense flat absolute color="transparent" class="iphone-padding-top">
       <v-btn icon small @click="close">
         <v-icon>mdi-chevron-down</v-icon>
       </v-btn>
@@ -45,7 +45,7 @@
 
             <v-tab-item value="products">
 
-              <v-container fluid grid-list-md px-2 style="background-color: black">
+              <v-container fluid grid-list-md px-2 class="iphone-padding-bottom" style="background-color: black">
                 <v-layout row wrap>
 
                   <v-flex xs6 v-for="(product, index) of products" :key="index">
@@ -66,7 +66,7 @@
 
             <v-tab-item value="reviews">
 
-              <v-container fluid grid-list-md px-2 style="background-color: black">
+              <v-container fluid grid-list-md px-2 class="iphone-padding-bottom" style="background-color: black">
                 <v-layout row wrap>
 
                   <v-flex xs6 v-for="(review, index) of reviews" :key="index">
@@ -151,6 +151,16 @@
 </script>
 
 <style lang="scss" scoped>
+  .iphone-padding-top {
+    padding-top: env(safe-area-inset-top) !important;
+    padding-top: constant(safe-area-inset-top) !important;
+  }
+
+  .iphone-padding-bottom {
+    padding-bottom: env(safe-area-inset-bottom) !important;
+    padding-bottom: constant(safe-area-inset-bottom) !important;
+  }
+
   .content-card {
     background-color: black !important;
     color: white;

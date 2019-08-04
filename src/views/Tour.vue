@@ -17,8 +17,20 @@
       </v-img>
 
       <!-- icons holder -->
+      <div class="icons-holder mr-4 mb-4">
+        <v-icon class="d-block mb-3" style="margin: auto;" size="32px">mdi-heart-outline</v-icon>
+        <v-avatar class="d-block mb-3" size="26px" style="margin: auto; border: 2px solid white"></v-avatar>
+        <v-icon class="d-block mb-3" style="margin: auto;" size="32px">mdi-share-variant</v-icon>
+        <v-icon class="d-block" style="margin: auto;" size="32px">mdi-message-outline</v-icon>
+      </div>
 
       <!-- product name holder -->
+      <div class="product-name-holder pr-4 ml-4 mb-4">
+        <h3 style="margin-bottom: 10px; font-size: 20px;">{{ productInfo.title }}</h3>
+        <p class="mb-0" style="font-size: 12px;">
+          <span v-for="(tag, index) of productInfo.tags" :key="index">#{{ tag }} </span>
+        </p>
+      </div>
 
       <!-- TODO: swiper, 여기 method, loading thumbnail 정리하기 -->
       <!-- TODO: 스와이프 움직임 따라 왓다리 갓다리 & 그라데이션 -->
@@ -27,8 +39,16 @@
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex';
+
   export default {
     name: 'Tour',
+    computed: {
+      ...mapGetters('product', [ 'products' ]),
+      player () {
+        return this.$refs.player.player;
+      },
+    },
     data: () => ({
       loading: true,
       videoId: '0_43v4p7Td0',
@@ -52,10 +72,8 @@
         tags: [ '크루얼티프리', '비건', '친환경용기', '시험기간' ]
       }
     }),
-    computed: {
-      player () {
-        return this.$refs.player.player;
-      },
+    created () {
+      this.selectProducts(1);
     },
     watch: {
       videoDuration (duration) {
@@ -67,6 +85,7 @@
       }
     },
     methods: {
+      ...mapActions('product', [ 'selectProducts' ]),
       onReadyVideo () {
         if (this.isActive) {
           this.playVideo();
@@ -98,6 +117,16 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .icons-holder {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .product-name-holder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-width: calc(100vw - 64px);
+  }
 </style>

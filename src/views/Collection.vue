@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <v-container fluid grid-list-md px-2 style="height:100vh; overflow: scroll; padding-top: 54px;">
+    <v-container fluid grid-list-md px-2 class="iphone-padding-top iphone-padding-bottom" style="height:100vh; overflow: scroll;">
       <v-layout row wrap>
 
         <v-flex xs6 v-for="(brand, index) of brands" :key="index">
@@ -48,6 +48,15 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .iphone-padding-top {
+    padding-top: 54px;
+    padding-top: calc(54px + env(safe-area-inset-top));
+    padding-top: calc(54px + constant(safe-area-inset-top));
+  }
 
+  .iphone-padding-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: constant(safe-area-inset-bottom);
+  }
 </style>

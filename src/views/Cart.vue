@@ -1,5 +1,5 @@
 <template>
-  <v-content style="background-color: white;">
+  <v-content style="background-color: white;" class="iphone-padding-top">
     <v-toolbar dense flat absolute>
       <v-btn icon small @click="$router.go(-1)">
         <v-icon>mdi-close</v-icon>
@@ -95,11 +95,11 @@
           </v-layout>
         </v-flex>
 
-        <v-footer absolute class="px-0 pt-3 pb-0" color="black" height="48px">
+        <v-footer absolute class="pa-0" color="black" height="auto">
           <v-btn block depressed
                  color="black"
-                 style="border-radius: 0; color: white; font-size: 20px;"
-                 class="font-weight-bold fill-height">살래요!</v-btn>
+                 style="border-radius: 0; color: white; font-size: 20px; height: auto;"
+                 class="pt-3 iphone-padding-bottom font-weight-bold fill-height">살래요!</v-btn>
         </v-footer>
 
       </v-layout>
@@ -188,6 +188,17 @@
 </script>
 
 <style lang="scss" scoped>
+  .iphone-padding-top {
+    padding-top: env(safe-area-inset-top) !important;
+    padding-top: constant(safe-area-inset-top) !important;
+  }
+
+  .iphone-padding-bottom {
+    padding-bottom: 16px !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+    padding-bottom: constant(safe-area-inset-bottom) !important;
+  }
+
   .cart-item::v-deep {
     .v-input__control {
       flex-grow: 1;

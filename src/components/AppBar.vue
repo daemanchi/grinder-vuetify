@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar dense color="transparent" flat fixed>
+  <v-app-bar dense color="transparent" flat fixed class="iphone-padding">
 
     <v-btn icon small to="/@myId">
       <v-icon>mdi-menu</v-icon>
@@ -50,6 +50,9 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .iphone-padding {
+    padding-top: env(safe-area-inset-top);
+    padding-top: constant(safe-area-inset-top);
+  }
 </style>
