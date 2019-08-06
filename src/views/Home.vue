@@ -10,7 +10,7 @@
           <Tour />
         </v-tab-item>
 
-        <v-tab-item value="collection" eager>
+        <v-tab-item value="collection">
           <Collection />
         </v-tab-item>
 

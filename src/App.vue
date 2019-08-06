@@ -1,11 +1,11 @@
 <template>
-  <v-app>
+  <v-app id="app">
 
     <AppBar v-if="$route.name === 'Home'"/>
 
-    <transition :name="transition">
+<!--    <transition :name="transition">-->
       <router-view />
-    </transition>
+<!--    </transition>-->
 
   </v-app>
 </template>
@@ -27,6 +27,12 @@
 </script>
 
 <style lang="scss">
+  #app {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
   body {
     -webkit-overflow-scrolling: auto;
     background-color: black;

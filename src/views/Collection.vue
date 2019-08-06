@@ -1,17 +1,18 @@
 <template>
-  <v-content>
-    <v-container fluid grid-list-md px-2 class="iphone-padding-top iphone-padding-bottom" style="height:100vh; overflow: scroll;">
+  <v-content style="background-color: black;">
+    <v-container fluid grid-list-md px-2
+                 class="iphone-padding-top iphone-padding-bottom"
+                 style="height:100vh; overflow: scroll;">
       <v-layout row wrap>
 
         <v-flex xs6 v-for="(brand, index) of brands" :key="index">
           <v-img :aspect-ratio="173/314"
                  :src="brand.image"
                  style="border-radius: 16px;"
-                 @click="openBrandProfile(brand.id)"
-          >
+                 @click="openBrandProfile(brand.id)">
             <v-layout column align-center pt-5>
-              <h3>{{ brand.name }}</h3>
-              <span>@{{ brand.id }}</span>
+              <div class="brand-name">{{ brand.name }}</div>
+              <div class="brand-id">@{{ brand.id }}</div>
             </v-layout>
           </v-img>
         </v-flex>
@@ -29,13 +30,13 @@
     data: () => ({
       brands: [
         { name: '알디프', id: 'Altdif', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-        { name: '톤28', id: 'toun28', image: 'https://picsum.photos/id/230/500' },
-        { name: '잇츠베러푸드', id: 'eatsbetter', image: 'https://picsum.photos/id/120/500' },
-        { name: '타나크라프', id: 'tanacraft', image: 'https://picsum.photos/id/502/500' },
-        { name: '알디프', id: 'Altdif', image: 'https://picsum.photos/id/80/500' },
-        { name: '톤28', id: 'toun28', image: 'https://picsum.photos/id/23/500' },
-        { name: '잇츠베러푸드', id: 'eatsbetter', image: 'https://picsum.photos/id/76/500' },
-        { name: '타나크라프', id: 'tanacraft', image: 'https://picsum.photos/id/42/500' },
+        { name: '톤28', id: 'toun28', image: require('@/assets/img/dummy-1.jpeg') },
+        { name: '잇츠베러푸드', id: 'eatsbetter', image: require('@/assets/img/dummy-2.jpeg') },
+        { name: '타나크라프트', id: 'tanacraft', image: require('@/assets/img/dummy-3.jpeg') },
+        { name: '알디프', id: 'Altdif', image: require('@/assets/img/dummy-4.jpeg') },
+        { name: '톤28', id: 'toun28', image: require('@/assets/img/dummy-5.jpeg') },
+        { name: '잇츠베러푸드', id: 'eatsbetter', image: require('@/assets/img/dummy-6.jpeg') },
+        { name: '타나크라프트', id: 'tanacraft', image: require('@/assets/img/dummy-1.jpeg') },
       ]
     }),
     methods: {
@@ -50,13 +51,26 @@
 
 <style lang="scss" scoped>
   .iphone-padding-top {
-    padding-top: 54px;
-    padding-top: calc(54px + env(safe-area-inset-top));
-    padding-top: calc(54px + constant(safe-area-inset-top));
+    padding-top: 44px;
+    padding-top: calc(44px + env(safe-area-inset-top));
+    padding-top: calc(44px + constant(safe-area-inset-top));
   }
 
   .iphone-padding-bottom {
     padding-bottom: env(safe-area-inset-bottom);
     padding-bottom: constant(safe-area-inset-bottom);
+  }
+
+  .brand-name {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 17px;
+    color: white;
+  }
+  .brand-id {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 17px;
+    color: white;
   }
 </style>

@@ -165,14 +165,8 @@
         }
       ],
     }),
-    created () {
-      this.$vuetify.theme.dark = false;
-    },
     mounted () {
       this.checkAll = true;
-    },
-    destroyed () {
-      this.$vuetify.theme.dark = true;
     },
     methods: {
       ...mapActions([ 'setDark' ]),
