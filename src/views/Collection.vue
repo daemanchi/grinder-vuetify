@@ -30,13 +30,13 @@
     data: () => ({
       brands: [
         { name: '알디프', id: 'Altdif', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-        { name: '톤28', id: 'toun28', image: require('@/assets/img/dummy-1.jpeg') },
-        { name: '잇츠베러푸드', id: 'eatsbetter', image: require('@/assets/img/dummy-2.jpeg') },
-        { name: '타나크라프트', id: 'tanacraft', image: require('@/assets/img/dummy-3.jpeg') },
-        { name: '알디프', id: 'Altdif', image: require('@/assets/img/dummy-4.jpeg') },
-        { name: '톤28', id: 'toun28', image: require('@/assets/img/dummy-5.jpeg') },
-        { name: '잇츠베러푸드', id: 'eatsbetter', image: require('@/assets/img/dummy-6.jpeg') },
-        { name: '타나크라프트', id: 'tanacraft', image: require('@/assets/img/dummy-1.jpeg') },
+        { name: '톤28', id: 'toun28', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
+        { name: '잇츠베러푸드', id: 'eatsbetter', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
+        { name: '타나크라프트', id: 'tanacraft', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
+        { name: '알디프', id: 'Altdif', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
+        { name: '톤28', id: 'toun28', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
+        { name: '잇츠베러푸드', id: 'eatsbetter', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
+        { name: '타나크라프트', id: 'tanacraft', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
       ]
     }),
     methods: {

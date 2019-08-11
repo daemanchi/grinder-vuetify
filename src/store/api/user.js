@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 export default {
-  getProducts (pageNum) {
+  postUsersSignUp (userId, password, payload) {
     return new Promise((resolve, reject) => {
-      axios.get(`/products`, {
-        params: {
-          limit: 3,
-          pageNum,
+      axios.post(`/users/signUp`, {
+        user: {
+          userId,
+          password,
+          payload
         }
       }).then((response) => {
         if (response.data) resolve(response.data);
@@ -14,11 +15,9 @@ export default {
       }).catch(reject);
     });
   },
-  postProductSeqLike (productSeq, requestUserId) {
+  getUserProfile (userId) {
     return new Promise((resolve, reject) => {
-      axios.post(`/products/${productSeq}/like`, {
-        requestId: requestUserId
-      }).then((response) => {
+      axios.get(`/${userId}/profile`).then((response) => {
         if (response.data) resolve(response.data);
         reject(response);
       }).catch(reject);

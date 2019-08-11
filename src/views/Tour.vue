@@ -1,56 +1,50 @@
 <template>
   <v-content>
     <v-container fluid pa-0>
-      <v-img :src="`https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`"
-             width="100vw" height="100vh" @click="playVideo">
-        <youtube v-show="!loading" :width="playerWidth"
-                 :height="playerHeight"
-                 :video-id="videoId"
-                 :player-vars="playerOptions"
-                 ref="player"
-                 @ready="onReadyVideo"
-                 @ended="playVideo"
-                 @paused="loading = true"
-                 @playing="onPlayingVideo"
-                 :style="{ marginTop: '-60px', marginLeft: -(playerWidth / 2 - screenWidth / 2) + 'px' }"
-        ></youtube>
-      </v-img>
 
-      <!-- icons holder -->
-      <div class="icons-holder" ref="iconsHolder">
-        <img v-if="productInfo.likeStatus"
-             style="display: block; margin-bottom: 15px;"
-             alt="like"
-             @click.stop="like"
-             src="@/assets/icons/icon-heart-filled@3x.png"
-             srcset="@/assets/icons/icon-heart-filled.png, @/assets/icons/icon-heart-filled@2x.png 2x, @/assets/icons/icon-heart-filled@3x.png 3x" />
-        <img v-else
-             style="display: block; margin-bottom: 15px;"
-             alt="like"
-             @click.stop="like"
-             src="@/assets/icons/icon-heart-outlined@3x.png"
-             srcset="@/assets/icons/icon-heart-outlined.png, @/assets/icons/icon-heart-outlined@2x.png 2x, @/assets/icons/icon-heart-outlined@3x.png 3x" />
-        <div style="width: 32px; height: 32px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center;">
-          <v-avatar size="28px"
-                    style="border: 2px solid white; box-shadow: 0 0 6px rgba(0,0,0,0.1)">
-            <v-img style="width: 24px; height: 24px;" :src="productInfo.brandProfileImage" aspect-ratio="1"></v-img>
-          </v-avatar>
+      <div class="swiper-container" style="background-color: black; width: 100vw; height: 100vh;">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <v-img :src="`https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`"
+                   width="100vw" height="100vh" @click="playVideo"></v-img>
+            <!--        <youtube v-show="!loading" :width="playerWidth"-->
+            <!--                 :height="playerHeight"-->
+            <!--                 :video-id="videoId"-->
+            <!--                 :player-vars="playerOptions"-->
+            <!--                 ref="player"-->
+            <!--                 @ready="onReadyVideo"-->
+            <!--                 @ended="playVideo"-->
+            <!--                 @paused="loading = true"-->
+            <!--                 @playing="onPlayingVideo"-->
+            <!--                 :style="{ marginTop: '-60px', marginLeft: -(playerWidth / 2 - screenWidth / 2) + 'px' }"-->
+            <!--        ></youtube>-->
+            <!--        <iframe :src="`http://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&enablejsapi=1&origin=${playerOptions.origin}&rel=0&modestbranding=1&controls=0`"-->
+            <!--                frameborder="0"-->
+            <!--                :width="playerWidth"-->
+            <!--                :height="playerHeight"-->
+            <!--                :style="{ marginTop: '-60px', marginLeft: -(playerWidth / 2 - screenWidth / 2) + 'px' }">-->
+            <!--        </iframe>-->
+          </div>
+          <div class="swiper-slide">
+            <v-img :src="`https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`"
+                   width="100vw" height="100vh" @click="playVideo"></v-img>
+
+          </div>
+          <div class="swiper-slide">
+            <v-img :src="`https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`"
+                   width="100vw" height="100vh" @click="playVideo"></v-img>
+
+          </div>
         </div>
-        <img style="display: block; margin-bottom: 15px;"
-             alt="share"
-             src="@/assets/icons/icon-share@3x.png"
-             srcset="@/assets/icons/icon-share.png, @/assets/icons/icon-share@2x.png 2x, @/assets/icons/icon-share@3x.png 3x" />
-        <img v-if="isOpenComments"
-             @click.stop="showComments"
-             style="display: block;"
-             src="@/assets/icons/icon-comment-filled@3x.png" alt="comment"
-             srcset="@/assets/icons/icon-comment-filled.png, @/assets/icons/icon-comment-filled@2x.png 2x, @/assets/icons/icon-comment-filled@3x.png 3x" />
-        <img v-else
-             @click.stop="showComments"
-             style="display: block;"
-             src="@/assets/icons/icon-comment-outlined@3x.png" alt="comment"
-             srcset="@/assets/icons/icon-comment-outlined.png, @/assets/icons/icon-comment-outlined@2x.png 2x, @/assets/icons/icon-comment-outlined@3x.png 3x" />
       </div>
+
+        <!-- icons holder -->
+      <ProductActionsHolder ref="iconsHolder"
+                            :likeStatus="false"
+                            :isOpenComments="isOpenComments"
+                            :brandProfileImageSrc="`https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`"
+                            @like="like"
+                            @comment:open="showComments" />
 
       <!-- product name holder -->
       <transition name="slide-y-transition">
@@ -90,11 +84,16 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex';
+  import ProductActionsHolder from '@/components/ProductActionsHolder';
+
+  import Swiper from 'swiper';
+  import 'swiper/dist/css/swiper.css';
 
   export default {
     name: 'Tour',
+    components: { ProductActionsHolder },
     computed: {
-      ...mapGetters('product', [ 'products' ]),
+      ...mapGetters('product', [ 'products', 'currentProductIndex' ]),
       player () {
         return this.$refs.player.player;
       },
@@ -107,7 +106,7 @@
         autoplay: 1,
         playsinline: 1,
         enablejsapi: 1,
-        origin: window.location.origin,
+        // origin: window.location.origin,
         rel: 0,
         modestbranding: 1,
         controls: 0,
@@ -118,9 +117,9 @@
       productInfo: {
         title: '트라이앵글 티백 샘플러',
         price: 12000,
-        introduce: '티 퍼퓸 브랜드 알디프의 트라이앵글 티 샘플러 11종',
+        description: '티 퍼퓸 브랜드 알디프의 트라이앵글 티 샘플러 11종',
         tags: [ '크루얼티프리', '비건', '친환경용기', '시험기간' ],
-        likeStatus: false,
+        like: false,
         brandProfileImage: require('@/assets/img/dummy-1.jpeg'),
         comments: [
           { userName: '이재봉', text: '알록달록하네' },
@@ -133,9 +132,19 @@
       },
       isOpenComments: false,
       commentInput: '',
+      swiper: null,
     }),
     created () {
-      this.selectProducts(1);
+      this.selectProducts(1).then(() => {
+        console.log(this.products);
+        this.swiper = new Swiper ('.swiper-container', {
+          // Optional parameters
+          direction: 'vertical',
+        });
+        this.selectComments({ productId: this.products[0].seq, pageNum: 1 }).then(response => {
+          console.log(response);
+        });
+      });
     },
     watch: {
       videoDuration (duration) {
@@ -147,7 +156,8 @@
       }
     },
     methods: {
-      ...mapActions('product', [ 'selectProducts' ]),
+      ...mapActions('product', [ 'selectProducts', 'toggleLikeProduct' ]),
+      ...mapActions('comment', [ 'selectComments' ]),
       onReadyVideo () {
         if (this.isActive) {
           this.playVideo();
@@ -182,10 +192,10 @@
         this.isOpenComments = !this.isOpenComments;
         if (this.isOpenComments) {
           this.$nextTick(() => {
-            this.$refs.iconsHolder.style.transform = `translateY(-${this.$refs.commentList.offsetHeight + 28}px)`;
+            this.$refs.iconsHolder.$el.style.transform = `translateY(-${this.$refs.commentList.offsetHeight + 48}px)`;
           });
         } else {
-          this.$refs.iconsHolder.style.transform = 'none';
+          this.$refs.iconsHolder.$el.style.transform = 'none';
         }
       },
       createComment () {
@@ -202,18 +212,8 @@
 </script>
 
 <style lang="scss" scoped>
-  .icons-holder {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin-right: 15px;
-    margin-bottom: 18px;
-    margin-bottom: calc(18px + constant(safe-area-inset-bottom));
-    margin-bottom: calc(18px + env(safe-area-inset-bottom));
-
-    transition: all .3s ease;
-  }
   .product-name-holder {
+    z-index: 2;
     margin-left: 20px;
     margin-bottom: 18px;
     margin-bottom: calc(18px + constant(safe-area-inset-bottom));
@@ -263,6 +263,7 @@
     .comment-wrapper {
       width: 100vw;
       max-height: 120px;
+      line-height: 20px;
       padding-right: 40px;
       overflow-y: scroll;
       overflow-x: hidden;

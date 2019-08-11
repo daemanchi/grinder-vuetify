@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 export default {
-  getProducts (pageNum) {
+  getComments (productId, pageNum) {
     return new Promise((resolve, reject) => {
-      axios.get(`/products`, {
+      axios.get(`/comments`, {
         params: {
-          limit: 3,
+          productId,
+          limit: 10,
           pageNum,
         }
       }).then((response) => {
@@ -14,14 +15,18 @@ export default {
       }).catch(reject);
     });
   },
-  postProductSeqLike (productSeq, requestUserId) {
+  postComment (parentSeq, userSeq, commentText) {
     return new Promise((resolve, reject) => {
-      axios.post(`/products/${productSeq}/like`, {
-        requestId: requestUserId
+      axios.post(`/comments`, {
+        comment: {
+          parentSeq,
+          payload: JSON.stringify({comment: commentText}),
+          userSeq,
+        }
       }).then((response) => {
         if (response.data) resolve(response.data);
         reject(response);
       }).catch(reject);
     });
-  }
+  },
 }
