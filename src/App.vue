@@ -20,9 +20,6 @@
     computed: {
       ...mapGetters([ 'transition' ]),
     },
-    data: () => ({
-      //
-    }),
   };
 </script>
 
