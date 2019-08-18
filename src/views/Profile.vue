@@ -1,34 +1,48 @@
 <template>
   <v-content>
-    <v-toolbar dense flat absolute color="transparent" class="iphone-padding-top">
-      <v-btn icon small @click="close">
-        <v-icon>mdi-chevron-down</v-icon>
+    <v-toolbar dense flat absolute color="transparent" class="iphone-padding">
+      <v-btn v-if="$route.name.includes('Brand')" icon small @click="$router.go(-1)">
+        <img src="@/assets/icons/icon-arrow-down@3x.png" alt="close"
+             srcset="@/assets/icons/icon-arrow-down.png,
+                     @/assets/icons/icon-arrow-down@2x.png 2x,
+                     @/assets/icons/icon-arrow-down@3x.png 3x">
       </v-btn>
-      <v-btn icon small>
-        <v-icon>mdi-bell-outline</v-icon>
+      <v-btn v-if="user.userId === $route.params.id" icon small>
+        <img src="@/assets/icons/icon-bell@3x.png" alt="alarm"
+             srcset="@/assets/icons/icon-bell.png,
+                     @/assets/icons/icon-bell@2x.png 2x,
+                     @/assets/icons/icon-bell@3x.png 3x">
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn icon small @click="close">
-        <v-icon>mdi-close</v-icon>
+      <v-btn v-if="$route.name.includes('User')" icon small @click="$router.go(-1)">
+        <img src="@/assets/icons/icon-cancel-white@3x.png" alt="close"
+             srcset="@/assets/icons/icon-cancel-white.png,
+                     @/assets/icons/icon-cancel-white@2x.png 2x,
+                     @/assets/icons/icon-cancel-white@3x.png 3x">
       </v-btn>
     </v-toolbar>
 
     <v-container fluid fill-height pa-0>
       <v-img class="fixed-background" :src="BackgroundImage" width="100vw" height="100vh">
-        <v-card class="pl-4 pr-3 pb-4"
-                style="background-color: transparent; position: absolute; bottom: 154px; box-shadow: none;">
-          <v-avatar size="60px">
+        <v-card :style="{ width: user.userId === $route.params.id ? '100%' : undefined }"
+                style="padding: 0 16px 22px 27px; background-color: transparent; position: absolute; bottom: 154px; box-shadow: none;">
+          <v-avatar v-if="$route.name.includes('User')" size="60px" style="margin-bottom: 10px; box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);">
             <v-img :src="profileImage" width="60px" height="60px"></v-img>
           </v-avatar>
-          <h3>{{ name }}</h3>
-          <div>
-            <span>{{ likeCount }} 좋아요</span>
-            <span>{{ followerCount }} 팔로워</span>
-            <span>{{ followingCount }} 팔로잉</span>
+          <div style="height: 36px; display: flex;" class="mb-2 align-center justify-space-between">
+            <span style="font-size: 24px; font-weight: 700; color: white;">{{ $route.name.includes('User') ? '@' : '' }}{{ name }}</span>
+            <img src="" alt="setting" style="margin-right: 13px;" v-if="user.userId === $route.params.id"
+                 srcset="">
           </div>
-          <div style="font-size: 10px; white-space: pre-wrap">
+          <div style="color: white; height: 20px; line-height: 20px; display: flex;" class="align-center">
+            <span style="font-size: 14px; font-weight: 500; margin-right: 7px;">{{ productLikesCount }}</span><span style="font-size: 12px; opacity: 0.65;">좋아요</span>
+            <span style="font-size: 14px; font-weight: 500; margin: 0 7px 0 20px;">{{ followerCount }}</span><span style="font-size: 12px; opacity: 0.65;">팔로워</span>
+            <span v-if="$route.name.includes('User')" style="font-size: 14px; font-weight: 500; margin: 0 7px 0 20px;">{{ followingCount }}</span>
+            <span v-if="$route.name.includes('User')" style="font-size: 12px; opacity: 0.65;">팔로잉</span>
+          </div>
+          <div style="font-size: 10px; color: white; white-space: pre-wrap; margin-top: 14px;">
             <span v-for="(tag, index) of tags" :key="index">#{{ tag }} </span>
-            <p>{{ summary }}</p>
+            <p class="ma-0">{{ introduce }}</p>
           </div>
           <div></div>
         </v-card>
@@ -94,20 +108,23 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
 
   export default {
     name: 'Profile',
     props: [ 'id' ],
+    computed: {
+      ...mapGetters('user', [ 'user' ]),
+    },
     data: () => ({
       name: '알디프',
       BackgroundImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg',
       profileImage: 'https://picsum.photos/id/82/100',
-      likeCount: 13250,
-      followerCount: 2473,
-      followingCount: 192,
+      productLikesCount: 0,
+      followerCount: 0,
+      followingCount: 0,
       tags: [ '크루얼티프리', '비건', '친환경용기' ],
-      summary: '티소믈리에가 만든 황홀한 티와\n차 향이 나는 드레스퍼퓸을 만나볼 수 있습니다.',
+      introduce: '티소믈리에가 만든 황홀한 티와\n차 향이 나는 드레스퍼퓸을 만나볼 수 있습니다.',
       tab: 'products',
       tabs: [
         { value: 'products', text: '상품', count: 23 },
@@ -139,18 +156,36 @@
         { name: '타나크라프', id: 'tanacraft', image: 'https://picsum.photos/id/42/500' },
       ]
     }),
-    methods: {
-      ...mapActions([ 'setTransition' ]),
-      close () {
-        this.setTransition('profile-out-transition').then(() => {
-          this.$router.go(-1);
+    created () {
+      if (this.$route.name.includes('User')) {
+        this.selectUser(this.$route.params.id).then(response => {
+          console.log(response);
+          this.name = JSON.parse(response.rspBody.userInfo.payload).name;
+          this.followerCount = response.rspBody.followerCount;
+          this.followingCount = response.rspBody.followingCount;
+          this.productLikesCount = response.rspBody.productLikesCount;
+        });
+      } else {
+        this.selectBrand(this.$route.params.id).then(response => {
+          console.log(response);
         });
       }
+    },
+    methods: {
+      ...mapActions('user', [ 'selectUser' ]),
+      ...mapActions('brand', [ 'selectBrand' ]),
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  .iphone-padding {
+    padding-top: env(safe-area-inset-top);
+    padding-top: constant(safe-area-inset-top);
+    &::v-deep .v-toolbar__content {
+      padding: 10px 24px;
+    }
+  }
   .iphone-padding-top {
     padding-top: env(safe-area-inset-top) !important;
     padding-top: constant(safe-area-inset-top) !important;

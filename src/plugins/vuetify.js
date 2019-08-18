@@ -5,6 +5,9 @@ import { Ripple, Touch } from 'vuetify/lib/directives';
 Vue.use(Vuetify);
 
 export default new Vuetify({
+  icons: {
+    iconfont: 'mdi', // default
+  },
   theme: {
     primary: '#000000',
   },

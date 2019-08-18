@@ -2,7 +2,10 @@
   <v-content style="background-color: white;" class="iphone-padding-top">
     <v-toolbar dense flat absolute>
       <v-btn icon small @click="$router.go(-1)">
-        <v-icon>mdi-close</v-icon>
+        <img src="@/assets/icons/icon-cancel-black@3x.png" alt="close"
+             srcset="@/assets/icons/icon-cancel-black.png,
+                     @/assets/icons/icon-cancel-black@2x.png 2x,
+                     @/assets/icons/icon-cancel-black@3x.png 3x">
       </v-btn>
     </v-toolbar>
 
@@ -15,14 +18,17 @@
         <v-flex xs12 class="px-6 pt-3 pb-3">
           <v-layout justify-space-between align-center>
             <v-checkbox v-model="checkAll"
-                        class="pa-0 ma-0"
+                        class="pa-0 ma-0 check-all"
                         hide-details
                         on-icon="mdi-check-circle"
                         off-icon="mdi-check-circle-outline"
                         color="rgb(255,121,114)"
-                        :label="`전체 선택 (${checked.length} / ${totalProducts.length})`">
+                        :label="`전체 선택 ( ${checked.length} / ${totalProducts.length} )`">
             </v-checkbox>
-            <v-btn text class="pa-1" style="min-width: 0; height: auto;">선택 삭제</v-btn>
+            <v-btn text class="pa-1"
+                   style="min-width: 0; height: auto; font-size: 12px; font-weight: 500; letter-spacing: normal; color: black;">
+              선택 삭제
+            </v-btn>
           </v-layout>
         </v-flex>
 
@@ -50,12 +56,12 @@
                         <v-img width="109px" aspect-ratio="1" :src="product.image" style="flex-grow: 0;"></v-img>
                         <div class="pl-4 d-flex flex-column justify-space-between">
                           <div>
-                            <div>{{ product.name }}</div>
-                            <div>옵션: {{ product.option }}</div>
+                            <div style="font-size: 14px; font-weight: 500; color: black;">{{ product.name }}</div>
+                            <div style="font-size: 12px; font-weight: 500; color: rgb(178,178,178);">옵션: {{ product.option }}</div>
                           </div>
                           <div>
-                            <div>{{ product.price }}원</div>
-                            <div>{{ product.finalPrice }}원</div>
+                            <div style="font-size: 12px; font-weight: 500; color: rgb(178,178,178);">{{ product.price }}원</div>
+                            <div style="font-size: 16px; font-weight: 500; color: rgb(255,121,114);">{{ product.finalPrice }}원</div>
                           </div>
                         </div>
                       </v-layout>
@@ -67,7 +73,7 @@
                           <v-btn text class="cart-item-counter pa-0" @click.stop="product.count++">+</v-btn>
                         </div>
                         <v-spacer></v-spacer>
-                        <v-btn rounded depressed dark @click.stop>바로 구매</v-btn>
+                        <v-btn rounded depressed dark @click.stop style="letter-spacing: normal; font-size: 12px; font-weight: 500;">바로 구매</v-btn>
                       </v-layout>
                     </v-container>
                   </template>
@@ -79,7 +85,7 @@
 
             </v-card-text>
 
-            <v-card-text class="pa-0 text-right font-weight-light" style="color: black;">
+            <v-card-text class="pa-0 text-right font-weight-light" style="color: black; font-size: 14px;">
               상품 {{ calculateBrandTotalPrice(item.products) }}원 + 배송비 {{ item.shippingFee }}원 = {{ calculateBrandTotalPrice(item.products) + item.shippingFee }}원
             </v-card-text>
           </v-card>
@@ -98,6 +104,7 @@
         <v-footer absolute class="pa-0" color="black" height="auto">
           <v-btn block depressed
                  color="black"
+                 @click="$router.replace({ name: 'Purchased' })"
                  style="border-radius: 0; color: white; font-size: 20px; height: auto;"
                  class="pt-3 iphone-padding-bottom font-weight-bold fill-height">살래요!</v-btn>
         </v-footer>
@@ -188,7 +195,7 @@
   }
 
   .iphone-padding-bottom {
-    padding-bottom: 16px !important;
+    padding-bottom: 12px !important;
     padding-bottom: env(safe-area-inset-bottom) !important;
     padding-bottom: constant(safe-area-inset-bottom) !important;
   }
@@ -214,6 +221,14 @@
       &:last-of-type {
         border-right: 1px solid rgb(178,178,178);
       }
+    }
+  }
+
+  .check-all::v-deep {
+    label {
+      font-size: 12px;
+      color: black;
+      font-weight: 500;
     }
   }
 

@@ -96,7 +96,7 @@
           this.$router.push({ name: 'Home' });
         }).catch(err => {
           console.error(err);
-        })
+        });
       }
     }
   }

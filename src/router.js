@@ -11,6 +11,8 @@ import SignUpEmailAndPwd from '@/views/Account/SignUpEmailAndPwd';
 import Home from '@/views/Home';
 import Cart from '@/views/Cart';
 import Profile from '@/views/Profile';
+import Purchased from "@/views/Purchased";
+import Reviews from "@/views/Reviews";
 
 const router = new Router({
   mode: 'history',
@@ -58,6 +60,14 @@ const router = new Router({
       component: Home
     },
     {
+      path: '/reviews',
+      name: 'Reviews',
+      meta: {
+        requiresAuth: true,
+      },
+      component: Reviews
+    },
+    {
       path: '/cart',
       name: 'Cart',
       meta: {
@@ -66,13 +76,29 @@ const router = new Router({
       component: Cart,
     },
     {
-      path: '/@:id',
-      name: 'Profile',
+      path: '/user/:id',
+      name: 'UserProfile',
       meta: {
         requiresAuth: true
       },
       component: Profile,
     },
+    {
+      path: '/brand/:id',
+      name: 'BrandProfile',
+      meta: {
+        requiresAuth: true,
+      },
+      component: Profile,
+    },
+    {
+      path: '/purchased',
+      name: 'Purchased',
+      meta: {
+        requiresAuth: true
+      },
+      component: Purchased,
+    }
   ]
 });
 

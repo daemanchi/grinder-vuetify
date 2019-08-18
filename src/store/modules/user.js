@@ -4,8 +4,8 @@ import * as mutation from '../mutations/user';
 const state = {
   auth: true,
   user: {
-    seq: 7, //temp
-    userId: 'testuser', //temp
+    seq: 0, //temp
+    userId: '', //temp
     name: '',
     email: '',
     password: '',
@@ -47,9 +47,10 @@ const mutations = {
   [mutation.SET_AUTH] (state, flag) {
     state.auth = flag;
   },
-  [mutation.SET_USER] (state, user) {
-    Object.assign(state.user, user);
-    if (user.payload) Object.assign(state.user, JSON.parse(user.payload));
+  [mutation.SET_USER] (state, rspBody) {
+    Object.assign(state.user, rspBody);
+    Object.assign(state.user, rspBody.userInfo);
+    Object.assign(state.user, JSON.parse(rspBody.userInfo.payload));
   }
 };
 

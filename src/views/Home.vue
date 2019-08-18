@@ -39,8 +39,11 @@
         }
       },
     },
+    created () {
+      this.toggleAppBar(true);
+    },
     methods: {
-      ...mapActions([ 'selectTab' ]),
+      ...mapActions([ 'selectTab', 'toggleAppBar' ]),
     }
   };
 </script>

@@ -4,7 +4,7 @@
       <v-layout wrap align-center justify-center>
         <v-flex xs12 class="px-9 text-center">
 
-          <v-btn text
+          <v-btn text block
                  :to="{ name: 'SignUpName' }"
                  color="white"
                  height="60px"
@@ -13,7 +13,7 @@
             시작하기
           </v-btn>
 
-          <v-btn text
+          <v-btn text block
                  :to="{ name: 'SignIn' }"
                  color="white"
                  height="30px"

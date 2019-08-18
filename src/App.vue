@@ -1,25 +1,36 @@
 <template>
   <v-app id="app">
 
-    <AppBar v-if="$route.name === 'Home'"/>
+    <AppBar v-if="$route.name === 'Home' && appBar"/>
 
-<!--    <transition :name="transition">-->
-      <router-view />
-<!--    </transition>-->
+    <router-view />
 
   </v-app>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
   import AppBar from '@/components/AppBar';
 
   export default {
     name: 'App',
     components: { AppBar },
     computed: {
-      ...mapGetters([ 'transition' ]),
+      ...mapGetters([ 'appBar' ]),
     },
+    created () {
+      // testuser 자동로그인
+      this.selectUser('testuser').then(response => {
+        console.log(response);
+        this.setUser(response.rspBody);
+        this.setAuth(true);
+      }).catch(err => {
+        console.error(err);
+      });
+    },
+    methods: {
+      ...mapActions('user', [ 'selectUser', 'setUser', 'setAuth' ]),
+    }
   };
 </script>
 
@@ -36,23 +47,5 @@
   }
   .theme--dark.v-application {
     background-color: black;
-  }
-
-  .profile-in-transition {
-    &-enter-to {
-      transform: translateY(100vh);
-    }
-    &-enter-active, &-leave-active {
-      transition: transform 1s ease-in-out;
-    }
-  }
-
-  .profile-out-transition {
-    &-leave-to {
-      transform: translateY(100vh);
-    }
-    &-enter-active, &-leave-active {
-      transition: transform 1s ease-in-out;
-    }
   }
 </style>

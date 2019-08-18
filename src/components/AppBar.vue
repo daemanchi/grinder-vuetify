@@ -1,7 +1,7 @@
 <template>
   <v-app-bar height="44px" color="transparent" flat fixed class="iphone-padding">
 
-    <v-btn icon small to="/@myId">
+    <v-btn icon small @click="$router.push({ name: 'UserProfile', params: { id: user.userId } })">
       <img src="@/assets/icons/icon-menu@3x.png" alt="menu"
            srcset="@/assets/icons/icon-menu.png,
                    @/assets/icons/icon-menu@2x.png 2x,
@@ -43,6 +43,7 @@
     name: 'AppBar',
     computed: {
       ...mapGetters([ 'tab', 'tabs' ]),
+      ...mapGetters('user', [ 'user' ]),
       selectedTab: {
         get () {
           return this.tab;

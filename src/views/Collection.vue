@@ -40,10 +40,8 @@
       ]
     }),
     methods: {
-      ...mapActions([ 'setTransition' ]),
       openBrandProfile (id) {
-        this.setTransition('profile-in-transition');
-        this.$router.push({ name: 'Profile', params: { id: id } });
+        this.$router.push({ name: 'BrandProfile', params: { id: id } });
       }
     }
   }
