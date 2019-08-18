@@ -49,8 +49,10 @@ const mutations = {
   },
   [mutation.SET_USER] (state, rspBody) {
     Object.assign(state.user, rspBody);
-    Object.assign(state.user, rspBody.userInfo);
-    Object.assign(state.user, JSON.parse(rspBody.userInfo.payload));
+    if (rspBody.userInfo) {
+      Object.assign(state.user, rspBody.userInfo);
+      if (rspBody.userInfo.payload) Object.assign(state.user, JSON.parse(rspBody.userInfo.payload));
+    }
   }
 };
 

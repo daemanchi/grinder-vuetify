@@ -43,7 +43,7 @@
         <v-footer absolute v-if="isOpenComments" class="pa-0 comments-holder" color="transparent">
           <v-layout column>
             <v-sheet class="scroll-wrapper" color="transparent" tile>
-              <div class="comment-wrapper" ref="commentList">
+              <div class="comment-wrapper" ref="commentList" @touchstart="$emit('comment:touchstart')" @touchend="$emit('comment:touchend')">
                 <div v-for="(comment, index2) of productInfo.comments" :key="index2">
                   <span class="comment-name">{{ comment.userName }}: </span>
                   <span class="comment-text">{{ comment.text }}</span>
@@ -109,6 +109,29 @@
                      @/assets/img/share-more@2x.png 2x,
                      @/assets/img/share-more@3x.png 3x">
             </v-layout>
+          </v-layout>
+        </v-footer>
+      </transition>
+
+      <!-- buy buttons -->
+      <transition name="slide-y-reverse-transition">
+        <v-footer v-if="isEnd" absolute class="pa-0" color="white" width="100%"
+                  style="left: unset; right: unset;" height="auto">
+          <v-layout row mx-0 mt-3 px-0 pt-0 align-center class="buttons-holder-padding">
+            <v-flex xs6 class="text-center">
+              <v-btn text
+                     color="rgba(0,0,0,0.85)"
+                     @click="$router.push({ name: 'Cart' })"
+                     style="font-size: 18px; font-weight: 700; letter-spacing: normal;"
+                     class="pa-0">장바구니</v-btn>
+            </v-flex>
+            <v-flex xs6 class="text-center">
+              <v-btn text
+                     color="rgba(0,0,0,0.85)"
+                     @click="$router.push({ name: 'Purchased' })"
+                     style="font-size: 18px; font-weight: 700; letter-spacing: normal;"
+                     class="pa-0">바로구매</v-btn>
+            </v-flex>
           </v-layout>
         </v-footer>
       </transition>
@@ -187,28 +210,6 @@
                   </v-list-item>
                 </v-flex>
 
-                <!-- buy buttons -->
-                <transition name="slide-y-reverse-transition">
-                  <v-footer v-if="isEnd" fixed class="pa-0" color="white" width="100%"
-                            style="left: unset; right: unset;" height="auto">
-                    <v-layout row mx-0 mt-3 px-0 pt-0 align-center class="buttons-holder-padding">
-                      <v-flex xs6 class="text-center">
-                        <v-btn text
-                               color="rgba(0,0,0,0.85)"
-                               @click="$router.push({ name: 'Cart' })"
-                               style="font-size: 18px; font-weight: 700; letter-spacing: normal;"
-                               class="pa-0">장바구니</v-btn>
-                      </v-flex>
-                      <v-flex xs6 class="text-center">
-                        <v-btn text
-                               color="rgba(0,0,0,0.85)"
-                               @click="$router.push({ name: 'Purchased' })"
-                               style="font-size: 18px; font-weight: 700; letter-spacing: normal;"
-                               class="pa-0">바로구매</v-btn>
-                      </v-flex>
-                    </v-layout>
-                  </v-footer>
-                </transition>
               </v-layout>
 
             </v-container>
@@ -273,7 +274,7 @@
             this.$refs.iconsHolder.$el.style.transform = `none`;
           }
         });
-      }
+      },
     },
     methods: {
       ...mapActions([ 'toggleAppBar' ]),
@@ -286,10 +287,11 @@
             'onStateChange': this.onPlayerStateChange
           }
         });
-        this.loading = false;
       },
       onPlayerReady (event) {
         console.log(`player-${this.seq} ready`, event.target);
+        if (this.seq === 0) event.target.playVideo();
+        this.loading = false;
       },
       togglePlayVideo () {
         console.log('togglePlayVideo');
@@ -297,7 +299,7 @@
         else this.ytPlayer.pauseVideo();
       },
       onPlayerStateChange (event) {
-        console.log('state changed', event);
+        console.log(`state changed on ${this.seq}`, event);
       },
       like () {
         this.likeStatus = !this.likeStatus;
@@ -307,8 +309,9 @@
         this.isOpenShare = !this.isOpenShare;
         if (this.isOpenShare) {
           this.$nextTick(() => {
-            this.$refs.iconsHolder.$el.style.transform = `translateY(-${this.$refs.shareIconsHolder.$el.offsetHeight + 50}px)`;
-            this.$refs.productNameHolder.style.transform = `translateY(-${this.$refs.shareIconsHolder.$el.offsetHeight + 50}px)`;
+            console.log(this.$refs.shareIconsHolder.$el.offsetHeight);
+            this.$refs.iconsHolder.$el.style.transform = `translateY(-165px)`;
+            this.$refs.productNameHolder.style.transform = `translateY(-165px)`;
           });
         } else {
           this.$refs.iconsHolder.$el.style.transform = 'none';

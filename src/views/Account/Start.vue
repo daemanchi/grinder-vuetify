@@ -9,7 +9,7 @@
                  color="white"
                  height="60px"
                  class="mb-4"
-                 style="font-size: 36px; font-weight: 700;">
+                 style="font-size: 36px; font-weight: 700; letter-spacing: normal;">
             시작하기
           </v-btn>
 
@@ -17,7 +17,7 @@
                  :to="{ name: 'SignIn' }"
                  color="white"
                  height="30px"
-                 style="font-weight: 500; font-size: 16px;">
+                 style="font-weight: 500; font-size: 16px; letter-spacing: normal;">
             계정이 있어요!
           </v-btn>
 

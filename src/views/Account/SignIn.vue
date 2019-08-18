@@ -55,14 +55,17 @@
 
           <v-layout row justify-center class="social-holder">
             <img src="@/assets/img/login-kakaotalk@3x.png" alt="kakao"
+                 @click="submit('seasonee')"
                  srcset="@/assets/img/login-kakaotalk.png,
                          @/assets/img/login-kakaotalk@2x.png 2x,
                          @/assets/img/login-kakaotalk@3x.png 3x">
             <img src="@/assets/img/login-naver@3x.png" alt="naver"
+                 @click="submit('seasonee')"
                  srcset="@/assets/img/login-naver.png,
                          @/assets/img/login-naver@2x.png 2x,
                          @/assets/img/login-naver@3x.png 3x">
             <img src="@/assets/img/login-facebook@3x.png" alt="facebook"
+                 @click="submit('seasonee')"
                  srcset="@/assets/img/login-facebook.png,
                          @/assets/img/login-facebook@2x.png 2x,
                          @/assets/img/login-facebook@3x.png 3x">
@@ -88,8 +91,8 @@
     },
     methods: {
       ...mapActions('user', [ 'setAuth', 'setUser', 'selectUser' ]),
-      submit () {
-        this.selectUser(this.email.split('@')[0]).then(response => {
+      submit (id) {
+        this.selectUser(id ? id : this.email.split('@')[0]).then(response => {
           console.log(response);
           this.setUser(response.rspBody);
           this.setAuth(true);

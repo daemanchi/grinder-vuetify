@@ -10,9 +10,11 @@
                          :videoId="videoId"
                          :origin="origin"
                          :productInfo="productInfo"
+                         @comment:touchstart="allowSwipe = false"
+                         @comment:touchend="allowSwipe = true"
                          @follow="productInfo.brand.follow = !productInfo.brand.follow"
-                         @reading="nowPlaying = false"
-                         @playing="nowPlaying = true" />
+                         @reading="allowSwipe = false"
+                         @playing="allowSwipe = true" />
         </div>
       </div>
 
@@ -76,7 +78,7 @@
         ]
       },
       swiper: null,
-      nowPlaying: true,
+      allowSwipe: true,
     }),
     async created () {
       await this.selectProducts(1).then(() => {
@@ -90,34 +92,12 @@
       });
     },
     watch: {
-      nowPlaying (flag) {
+      allowSwipe (flag) {
         this.swiper.allowTouchMove = flag;
       }
     },
     methods: {
       ...mapActions('product', [ 'selectProducts' ]),
-      showComments () {
-        this.isOpenComments = !this.isOpenComments;
-        if (this.isOpenComments) {
-          this.$nextTick(() => {
-            this.$refs.iconsHolder.$el.style.transform = `translateY(-${this.$refs.commentList.offsetHeight + 48}px)`;
-          });
-        } else {
-          this.$refs.iconsHolder.$el.style.transform = 'none';
-        }
-      },
-      createComment () {
-        if (this.commentInput !== '') {
-          this.productInfo.comments.push({ userName: '당신', text: this.commentInput });
-          this.$nextTick(() => {
-            this.$refs.commentList.scrollTo(0, this.$refs.commentList.scrollHeight);
-            this.commentInput = '';
-          });
-        }
-      },
-      onSwiperChanged (event) {
-        console.log(event);
-      },
     }
   }
 </script>

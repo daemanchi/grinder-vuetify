@@ -42,7 +42,7 @@
           </div>
           <div style="font-size: 10px; color: white; white-space: pre-wrap; margin-top: 14px;">
             <span v-for="(tag, index) of tags" :key="index">#{{ tag }} </span>
-            <p class="ma-0">{{ introduce }}</p>
+            <p class="ma-0">{{ $route.name.includes('User') ? user.introduce : introduce }}</p>
           </div>
           <div></div>
         </v-card>

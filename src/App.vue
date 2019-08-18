@@ -18,19 +18,6 @@
     computed: {
       ...mapGetters([ 'appBar' ]),
     },
-    created () {
-      // testuser 자동로그인
-      this.selectUser('testuser').then(response => {
-        console.log(response);
-        this.setUser(response.rspBody);
-        this.setAuth(true);
-      }).catch(err => {
-        console.error(err);
-      });
-    },
-    methods: {
-      ...mapActions('user', [ 'selectUser', 'setUser', 'setAuth' ]),
-    }
   };
 </script>
 
