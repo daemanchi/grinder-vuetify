@@ -7,12 +7,12 @@
 
         <v-flex xs6 v-for="(brand, index) of brands" :key="index">
           <v-img :aspect-ratio="173/314"
-                 :src="brand.image"
+                 :src="brand.cardImage"
                  style="border-radius: 16px;"
                  @click="openBrandProfile(brand.id)">
             <v-layout column align-center pt-5>
               <div class="brand-name">{{ brand.name }}</div>
-              <div class="brand-id">@{{ brand.id }}</div>
+              <div class="brand-id">@{{ brand.brandId }}</div>
             </v-layout>
           </v-img>
         </v-flex>
@@ -23,22 +23,13 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { mapGetters } from 'vuex';
 
   export default {
     name: 'Collection',
-    data: () => ({
-      brands: [
-        { name: '알디프', id: 'Altdif', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-        { name: '톤28', id: 'toun28', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-        { name: '잇츠베러푸드', id: 'eatsbetter', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-        { name: '타나크라프트', id: 'tanacraft', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-        { name: '알디프', id: 'Altdif', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-        { name: '톤28', id: 'toun28', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-        { name: '잇츠베러푸드', id: 'eatsbetter', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-        { name: '타나크라프트', id: 'tanacraft', image: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-      ]
-    }),
+    computed: {
+      ...mapGetters('brand', [ 'brands' ])
+    },
     methods: {
       openBrandProfile (id) {
         this.$router.push({ name: 'BrandProfile', params: { id: id } });
@@ -49,9 +40,9 @@
 
 <style lang="scss" scoped>
   .iphone-padding-top {
-    padding-top: 44px;
-    padding-top: calc(44px + env(safe-area-inset-top));
-    padding-top: calc(44px + constant(safe-area-inset-top));
+    padding-top: 74px;
+    padding-top: calc(74px + env(safe-area-inset-top));
+    padding-top: calc(74px + constant(safe-area-inset-top));
   }
 
   .iphone-padding-bottom {

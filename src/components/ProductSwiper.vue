@@ -22,9 +22,9 @@
                             :isEnd="isEnd"
                             :likeStatus="likeStatus"
                             :isOpenComments="isOpenComments"
-                            :brandProfileImageSrc="`https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`"
+                            :brandProfileImageSrc="productInfo.brand.profileImage"
                             @like="like"
-                            @click:profile="$router.push({ name: 'BrandProfile', params: { id: 'brandId' } })"
+                            @click:profile="$router.push({ name: 'BrandProfile', params: { id: productInfo.brand.brandId } })"
                             @share:toggle="toggleShare"
                             @comment:toggle="showComments" />
 
@@ -159,14 +159,19 @@
                   <div style="font-size: 20px; font-weight: 700; line-height: 32px;">{{ productInfo.name }}</div>
                   <div style="font-size: 24px; font-weight: 700; line-height: 32px; margin-bottom: 13px;">{{ productInfo.price }}원</div>
                   <div style="font-size: 12px; font-weight: 500; line-height: 18px; opacity: 0.8">
-                    <p class="ma-0">{{ productInfo.introduce }}</p>
+                    <p class="ma-0" style="white-space: pre-wrap;">{{ productInfo.introduce }}</p>
                     <span v-for="(tag, index) of productInfo.tags" :key="index">#{{ tag }} </span>
                   </div>
                 </v-flex>
 
                 <v-flex xs12 class="px-5 pt-9">
                   <div class="section-heading">시즈닝 포인트</div>
-                  <div v-for="(point, index) of productInfo.seasoningPoints" :key="index">
+                  <div style="display: flex; align-items: center;" v-for="(point, index) of productInfo.seasoningPoints" :key="index">
+                    <img src="@/assets/icons/icon-check-white@3x.png" alt="V"
+                         style="margin: 0 13px;"
+                         srcset="@/assets/icons/icon-check-white.png,
+                                 @/assets/icons/icon-check-white@2x.png 2x,
+                                 @/assets/icons/icon-check-white@3x.png 3x">
                     <span style="font-size: 12px; line-height: 30px; font-weight: 700;">{{ point }}</span>
                   </div>
                 </v-flex>
@@ -290,8 +295,6 @@
       },
       onPlayerReady (event) {
         console.log(`player-${this.seq} ready`, event.target);
-        if (this.seq === 0) event.target.playVideo();
-        this.loading = false;
       },
       togglePlayVideo () {
         console.log('togglePlayVideo');
@@ -300,6 +303,8 @@
       },
       onPlayerStateChange (event) {
         console.log(`state changed on ${this.seq}`, event);
+        // 1: 재생 중 또는 2: 일시정지인 경우 loading = false
+        this.loading = !(event.data === 1 || event.data === 2);
       },
       like () {
         this.likeStatus = !this.likeStatus;

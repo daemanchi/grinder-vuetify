@@ -16,7 +16,7 @@
          @click.stop="$emit('click:profile')">
       <v-avatar size="28px"
                 style="border: 2px solid white; box-shadow: 0 0 6px rgba(0,0,0,0.1)">
-        <v-img style="width: 24px; height: 24px;" :src="brandProfileImageSrc" aspect-ratio="1"></v-img>
+        <v-img :src="brandProfileImageSrc" aspect-ratio="1"></v-img>
       </v-avatar>
     </div>
     <img style="display: block; margin-bottom: 15px;"
