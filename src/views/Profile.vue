@@ -68,6 +68,7 @@
                     <v-flex xs6 v-for="(product, index) of profile.products" :key="index">
                       <v-img :aspect-ratio="173/314"
                              :src="product.image"
+                             @click="$router.push({ name: 'Home' })"
                              style="border-radius: 16px;">
                       </v-img>
                     </v-flex>
@@ -85,6 +86,7 @@
                     <v-flex xs6 v-for="(review, index) of profile.reviews" :key="index">
                       <v-img :aspect-ratio="173/314"
                              :src="review.image"
+                             @click="$router.push({ name: 'Reviews' })"
                              style="border-radius: 16px;">
                       </v-img>
                     </v-flex>
@@ -114,6 +116,7 @@
                     <v-flex xs6 v-for="(product, index) of profile.wishes" :key="index">
                       <v-img :aspect-ratio="173/314"
                              :src="product.image"
+                             @click="$router.push({ name: 'Home' })"
                              style="border-radius: 16px;">
                       </v-img>
                     </v-flex>
@@ -131,6 +134,7 @@
                     <v-flex xs6 v-for="(review, index) of profile.purchases" :key="index">
                       <v-img :aspect-ratio="173/314"
                              :src="review.image"
+                             @click="$router.push({ name: 'Home' })"
                              style="border-radius: 16px;">
                       </v-img>
                     </v-flex>
@@ -147,6 +151,7 @@
 
                     <v-flex xs6 v-for="(review, index) of profile.reviews" :key="index">
                       <v-img :aspect-ratio="173/314"
+                             @click="$router.push({ name: 'Reviews' })"
                              :src="review.image"
                              style="border-radius: 16px;">
                       </v-img>

@@ -123,23 +123,23 @@
             reviewText: '그냥 일단 드셔보세요\n우주먹는 맛 절대 후회안함 단골 2년째',
             like: false,
             comments: [
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치됐음', like: false },
-              { user: { name: '진저', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '우주먹는맛 진짜임', like: true },
-              { user: { name: '김수연', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '완전 홈카페 찍겠는데여', like: true },
-              { user: { name: '고유라', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '알디프 진짜 잘대야댐... 저두 1년째 사먹는 중인데 이만한 차 맛집이 없음', like: false },
-              { user: { name: '빅상욱', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '와근데 색깔진짜예쁘다', like: false },
+              { user: { name: '방이동불주먹', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-eatsbetter-1.png' }, comment: '이거 먹고 불면증 완치됐음', like: false },
+              { user: { name: '진저', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-eatsbetter-2.png' }, comment: '우주먹는맛 진짜임', like: true },
+              { user: { name: '김수연', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-craftlink-2.png' }, comment: '완전 홈카페 찍겠는데여', like: true },
+              { user: { name: '고유라', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-2.png' }, comment: '알디프 진짜 잘대야댐... 저두 1년째 사먹는 중인데 이만한 차 맛집이 없음', like: false },
+              { user: { name: '빅상욱', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-1.png' }, comment: '와근데 색깔진짜예쁘다', like: false },
             ]
           },
           {
-            user: { name: '김수연', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
+            user: { name: '김수연', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-kit.png' },
             rate: 5,
             reviewImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-2.png',
             reviewText: '아 대박 개짱이에여... 님들두머거바',
             like: true,
             comments: [
-              { user: { name: '진저애비', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '와 사진 대박 잘찍으셧다,,', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '알디프 진짜 잘대야댐... 저두 1년째 사먹는 중인데 이만한 차 맛집이 없음', like: false },
-              { user: { name: '시즈니', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치됐음', like: true },
+              { user: { name: '진저애비', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-eatsbetter-2.png' }, comment: '와 사진 대박 잘찍으셧다,,', like: false },
+              { user: { name: '방이동불주먹', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-eatsbetter-1.png' }, comment: '알디프 진짜 잘대야댐... 저두 1년째 사먹는 중인데 이만한 차 맛집이 없음', like: false },
+              { user: { name: '시즈니', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/seasonee.jpg' }, comment: '이거 먹고 불면증 완치됐음', like: true },
             ]
           },
           {
@@ -149,10 +149,10 @@
             reviewText: '고양이는 못먹지만 인간에겐 좋다',
             like: false,
             comments: [
-              { user: { name: '시즈니', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '아니. 고양이 사진을 올려주셔야죠.', like: false },
-              { user: { name: '박상욱', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: 'ㅋㅋㅋㅋㅋㅋㅋ 고양이 이름 진저죠', like: false },
-              { user: { name: '고유라', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치됐음', like: false },
-              { user: { name: '진저친구', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '장난감같네요 기여워', like: false },
+              { user: { name: '시즈니', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/seasonee.jpg' }, comment: '아니. 고양이 사진을 올려주셔야죠.', like: false },
+              { user: { name: '박상욱', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-1.png' }, comment: 'ㅋㅋㅋㅋㅋㅋㅋ 고양이 이름 진저죠', like: false },
+              { user: { name: '고유라', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-2.png' }, comment: '이거 먹고 불면증 완치됐음', like: false },
+              { user: { name: '진저친구', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-eatsbetter-2.png' }, comment: '장난감같네요 기여워', like: false },
             ]
           },
         ]
@@ -171,7 +171,7 @@
     methods: {
       createComment (review) {
         review.comments.push({
-          user: { name: '당신', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/seasonee.jpg' },
+          user: { name: '시즈니', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/seasonee.jpg' },
           comment: this.commentInput, like: false
         });
         this.commentInput = '';

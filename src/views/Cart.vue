@@ -157,16 +157,15 @@
         {
           brand: { name: '알디프', id: 'Altdif' },
           products: [
-            { name: '트라이앵글 티백 샘플러', option: '옵션이름', price: 24000, finalPrice: 12000, count: 1, image: 'https://picsum.photos/id/13/500' },
-            { name: '트라이앵글 티백 샘플러2', option: '옵션이름', price: 24000, finalPrice: 12000, count: 1, image: 'https://picsum.photos/id/13/500' },
+            { name: '트라이앵글 티백 샘플러', option: '스페이스 오디티 추가구매', price: 13000, finalPrice: 11000, count: 1, image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-1.png' },
           ],
           shippingFee: 2500
         },
         {
-          brand: { name: '타나크라프트', id: 'Altdif' },
+          brand: { name: '톤28', id: 'toun28' },
           products: [
-            { name: '[신상 할인 50%] 앗 백팩이 정말정말예쁘잖아요!', option: '옵션이름', price: 24000, finalPrice: 12000, count: 1, image: 'https://picsum.photos/id/59/500' },
-            { name: '[신상 할인 50%] 백팩', option: '옵션이름', price: 24000, finalPrice: 12000, count: 1, image: 'https://picsum.photos/id/147/500' },
+            { name: '건강한 씻을거리', option: '28번', price: 11000, finalPrice: 9000, count: 1, image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-soap.png' },
+            { name: 'pH 균형제', option: '별도 옵션 없음', price: 28700, finalPrice: 23700, count: 1, image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-ph.png' },
           ],
           shippingFee: 0
         }
