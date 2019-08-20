@@ -92,14 +92,14 @@
     methods: {
       ...mapActions('user', [ 'setAuth', 'setUser', 'selectUser' ]),
       submit (id) {
-        this.selectUser(id ? id : this.email.split('@')[0]).then(response => {
-          console.log(response);
-          this.setUser(response.rspBody);
-          this.setAuth(true);
-          this.$router.push({ name: 'Home' });
-        }).catch(err => {
-          console.error(err);
-        });
+        // this.selectUser(id ? id : this.email.split('@')[0]).then(response => {
+        //   console.log(response);
+        //   this.setUser(response.rspBody);
+        this.setAuth(true);
+        this.$router.push({ name: 'Home' });
+        // }).catch(err => {
+        //   console.error(err);
+        // });
       }
     }
   }

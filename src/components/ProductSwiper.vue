@@ -194,12 +194,12 @@
                 <v-flex xs12 class="px-5 pt-9 brand-holder">
                   <div class="section-heading">이 제품을 파는 브랜드는?</div>
                   <v-list-item class="pa-0 ma-0">
-                    <v-list-item-avatar size="120px" class="my-0 mr-5">
+                    <v-list-item-avatar size="120px" class="my-0 mr-5" @click="$router.push({ name: 'BrandProfile', params: { id: productInfo.brand.brandId } })">
                       <v-img :src="productInfo.brand.profileImage"></v-img>
                     </v-list-item-avatar>
                     <v-list-item-content style="color: white;">
                       <div style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">{{ productInfo.brand.name }}</div>
-                      <div style="font-size: 12px; font-weight: 500; line-height: 18px; margin-bottom: 10px;">{{ productInfo.brand.introduce }}</div>
+                      <div style="font-size: 12px; font-weight: 500; line-height: 18px; margin-bottom: 10px; white-space: pre-wrap;">{{ productInfo.brand.introduce }}</div>
                       <v-btn :outlined="!productInfo.brand.follow"
                              rounded
                              :color="productInfo.brand.follow ? 'rgb(88,130,248)' : 'white'"

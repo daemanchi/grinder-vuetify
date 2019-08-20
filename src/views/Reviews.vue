@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
+    <div class="iphone-padding swiper-pagination"></div>
 
     <v-toolbar dense flat absolute color="transparent" class="iphone-padding" style="z-index: 2;">
       <v-btn icon small @click="$router.go(-1)">
@@ -56,15 +56,24 @@
                                 row align-start justify-space-between class="ma-0"
                                 style="padding: 10px 15px 20px 16px;">
                         <v-avatar size="31px"
-                                  style="border: 1px solid rgb(151,151,151);">
+                                  style="border: 1px solid rgb(151,151,151); flex-shrink: 0; margin-right: 8px;">
                           <v-img :src="comment.user.profileImage" aspect-ratio="1"></v-img>
                         </v-avatar>
-                        <v-flex style="max-width: calc(100vw - 101px)">
+                        <v-flex style="max-width: calc(100vw - 109px)">
                           <div style="font-size: 12px; font-weight: 700;">{{ comment.user.name }}</div>
                           <div style="font-size: 12px; font-weight: 500;">{{ comment.comment }}</div>
                         </v-flex>
-                        <v-btn icon width="20px" height="20px">
-                          like
+                        <v-btn icon width="30px" height="30px" @click="comment.like = !comment.like">
+                          <img v-if="comment.like"
+                               src="@/assets/icons/icon-heart2-filled@3x.png" alt="liked"
+                               srcset="@/assets/icons/icon-heart2-filled.png,
+                                       @/assets/icons/icon-heart2-filled@2x.png 2x,
+                                       @/assets/icons/icon-heart2-filled@3x.png 3x">
+                          <img v-else
+                               src="@/assets/icons/icon-heart2-outlined@3x.png" alt="like"
+                               srcset="@/assets/icons/icon-heart2-outlined.png,
+                                       @/assets/icons/icon-heart2-outlined@2x.png 2x,
+                                       @/assets/icons/icon-heart2-outlined@3x.png 3x">
                         </v-btn>
                       </v-layout>
                     </v-sheet>
@@ -72,7 +81,7 @@
                     <v-text-field solo flat placeholder="나의 첫 댓글은?"
                                   ref="commentInput"
                                   height="38px" hide-details
-                                  @keydown.enter="createComment"
+                                  @keydown.enter="createComment(review)"
                                   v-model="commentInput">
                     </v-text-field>
                   </v-layout>
@@ -108,73 +117,42 @@
         commentInput: '',
         reviews: [
           {
+            user: { name: '시즈니', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/seasonee.jpg' },
+            rate: 5,
+            reviewImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-aldif-3.gif',
+            reviewText: '그냥 일단 드셔보세요\n우주먹는 맛 절대 후회안함 단골 2년째',
+            like: false,
+            comments: [
+              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치됐음', like: false },
+              { user: { name: '진저', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '우주먹는맛 진짜임', like: true },
+              { user: { name: '김수연', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '완전 홈카페 찍겠는데여', like: true },
+              { user: { name: '고유라', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '알디프 진짜 잘대야댐... 저두 1년째 사먹는 중인데 이만한 차 맛집이 없음', like: false },
+              { user: { name: '빅상욱', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '와근데 색깔진짜예쁘다', like: false },
+            ]
+          },
+          {
             user: { name: '김수연', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
+            rate: 5,
+            reviewImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-2.png',
+            reviewText: '아 대박 개짱이에여... 님들두머거바',
+            like: true,
+            comments: [
+              { user: { name: '진저애비', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '와 사진 대박 잘찍으셧다,,', like: false },
+              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '알디프 진짜 잘대야댐... 저두 1년째 사먹는 중인데 이만한 차 맛집이 없음', like: false },
+              { user: { name: '시즈니', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치됐음', like: true },
+            ]
+          },
+          {
+            user: { name: '진저애비', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-craftlink-2.png' },
             rate: 4,
-            reviewImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg',
-            reviewText: '그냥 일단 드셔보세요\n우주먹는 맛 절대 후회안함 단골 2년째',
+            reviewImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-1.png',
+            reviewText: '고양이는 못먹지만 인간에겐 좋다',
             like: false,
             comments: [
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-            ]
-          },
-          {
-            user: { name: '김수연', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-            rate: 4,
-            reviewImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg',
-            reviewText: '그냥 일단 드셔보세요\n우주먹는 맛 절대 후회안함 단골 2년째',
-            like: false,
-            comments: [
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-            ]
-          },
-          {
-            user: { name: '김수연', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-            rate: 5,
-            reviewImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg',
-            reviewText: '그냥 일단 드셔보세요\n우주먹는 맛 절대 후회안함 단골 2년째',
-            like: false,
-            comments: [
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-            ]
-          },
-          {
-            user: { name: '김수연', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-            rate: 5,
-            reviewImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg',
-            reviewText: '그냥 일단 드셔보세요\n우주먹는 맛 절대 후회안함 단골 2년째',
-            like: false,
-            comments: [
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-            ]
-          },
-          {
-            user: { name: '김수연', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' },
-            rate: 5,
-            reviewImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg',
-            reviewText: '그냥 일단 드셔보세요\n우주먹는 맛 절대 후회안함 단골 2년째',
-            like: false,
-            comments: [
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
-              { user: { name: '방이동불주먹', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치 됐음 저 리뷰도 남겼으니까 프로필 ㄱㄱ', like: false },
+              { user: { name: '시즈니', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '아니. 고양이 사진을 올려주셔야죠.', like: false },
+              { user: { name: '박상욱', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: 'ㅋㅋㅋㅋㅋㅋㅋ 고양이 이름 진저죠', like: false },
+              { user: { name: '고유라', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '이거 먹고 불면증 완치됐음', like: false },
+              { user: { name: '진저친구', profileImage: 'https://i3.ytimg.com/vi/0_43v4p7Td0/maxresdefault.jpg' }, comment: '장난감같네요 기여워', like: false },
             ]
           },
         ]
@@ -190,6 +168,15 @@
         },
       });
     },
+    methods: {
+      createComment (review) {
+        review.comments.push({
+          user: { name: '당신', profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/seasonee.jpg' },
+          comment: this.commentInput, like: false
+        });
+        this.commentInput = '';
+      }
+    }
   }
 </script>
 
@@ -237,5 +224,15 @@
     margin-bottom: 18px;
     margin-bottom: calc(18px + constant(safe-area-inset-bottom));
     margin-bottom: calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .comments-holder {
+    &::v-deep .v-input {
+      background-color: white;
+      border-radius: 0;
+
+      padding-bottom: constant(safe-area-inset-bottom);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
   }
 </style>

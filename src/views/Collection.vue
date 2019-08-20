@@ -9,7 +9,7 @@
           <v-img :aspect-ratio="173/314"
                  :src="brand.cardImage"
                  style="border-radius: 16px;"
-                 @click="openBrandProfile(brand.id)">
+                 @click="openBrandProfile(brand.brandId)">
             <v-layout column align-center pt-5>
               <div class="brand-name">{{ brand.name }}</div>
               <div class="brand-id">@{{ brand.brandId }}</div>
@@ -31,8 +31,8 @@
       ...mapGetters('brand', [ 'brands' ])
     },
     methods: {
-      openBrandProfile (id) {
-        this.$router.push({ name: 'BrandProfile', params: { id: id } });
+      openBrandProfile (brandId) {
+        this.$router.push({ name: 'BrandProfile', params: { id: brandId } });
       }
     }
   }

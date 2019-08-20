@@ -4,15 +4,42 @@ import * as mutation from '../mutations/user';
 const state = {
   auth: true,
   user: {
-    seq: 0, //temp
-    userId: '', //temp
-    name: '',
-    email: '',
+    seq: 1,
+    userId: 'seasonee',
+    name: '시즈니',
+    email: 'seasoning.official@seasoning.tv',
     password: '',
-    introduce: '',
+    introduce: '더 편한 가치소비, 더 나은 세상',
     birthYear: '',
     birthMonth: '',
     birthDate: '',
+    profileImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/seasonee.jpg',
+    cardImage: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-craftlink-2.png',
+    productLikesCount: 23,
+    followerCount: 21,
+    followingCount: 10,
+    reviews: [
+      { userName: '김수연', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-2.png' },
+      { userName: '시즈니', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-aldif-3.gif' },
+      { userName: '고유라', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-1.png' },
+      { userName: '진저', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-2.png' },
+    ],
+    wishes: [
+      { videoId: 'mqx4HE8Zuk4', image: 'https://i3.ytimg.com/vi/mqx4HE8Zuk4/maxresdefault.jpg' },
+      { videoId: '7f8ALfNp-po', image: 'https://i3.ytimg.com/vi/7f8ALfNp-po/maxresdefault.jpg' },
+      { videoId: 'soZd5tADi0E', image: 'https://i3.ytimg.com/vi/soZd5tADi0E/maxresdefault.jpg' },
+      { videoId: 'mqx4HE8Zuk4', image: 'https://i3.ytimg.com/vi/mqx4HE8Zuk4/maxresdefault.jpg' },
+      { videoId: '7f8ALfNp-po', image: 'https://i3.ytimg.com/vi/7f8ALfNp-po/maxresdefault.jpg' },
+      { videoId: 'soZd5tADi0E', image: 'https://i3.ytimg.com/vi/soZd5tADi0E/maxresdefault.jpg' },
+    ],
+    purchases: [
+      { videoId: 'mqx4HE8Zuk4', image: 'https://i3.ytimg.com/vi/mqx4HE8Zuk4/maxresdefault.jpg' },
+      { videoId: '7f8ALfNp-po', image: 'https://i3.ytimg.com/vi/7f8ALfNp-po/maxresdefault.jpg' },
+      { videoId: 'soZd5tADi0E', image: 'https://i3.ytimg.com/vi/soZd5tADi0E/maxresdefault.jpg' },
+      { videoId: 'mqx4HE8Zuk4', image: 'https://i3.ytimg.com/vi/mqx4HE8Zuk4/maxresdefault.jpg' },
+      { videoId: '7f8ALfNp-po', image: 'https://i3.ytimg.com/vi/7f8ALfNp-po/maxresdefault.jpg' },
+      { videoId: 'soZd5tADi0E', image: 'https://i3.ytimg.com/vi/soZd5tADi0E/maxresdefault.jpg' },
+    ],
   }
 };
 

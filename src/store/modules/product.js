@@ -33,6 +33,9 @@ const state = {
         { userName: '김사라', text: '빨리 배달해주세요 현기증나요' },
       ],
       reviews: [
+        { userName: '시즈니', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-soap.png' },
+        { userName: '김수연', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-ph.png' },
+        { userName: '고유라', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-kit.png' },
       ]
     },
     {
@@ -64,6 +67,10 @@ const state = {
         { userName: '전성우', text: '애인 사줘야지' },
       ],
       reviews: [
+        { userName: '김수연', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-2.png' },
+        { userName: '시즈니', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-aldif-3.gif' },
+        { userName: '고유라', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-1.png' },
+        { userName: '진저', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-2.png' },
       ]
     },
     {
@@ -92,6 +99,9 @@ const state = {
         { userName: '김수연', text: '이거 진짜 순한가여?' },
       ],
       reviews: [
+        { userName: '시즈니', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-soap.png' },
+        { userName: '김수연', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-ph.png' },
+        { userName: '고유라', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-kit.png' },
       ]
     },
     {
@@ -120,6 +130,10 @@ const state = {
         { userName: '박상욱', text: '세봉지밖에 안 산게 후회되는 맛... 또살려고 또켰어요' },
       ],
       reviews: [
+        { userName: '김수연', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-eatsbetter-2.png' },
+        { userName: '시즈니', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-eatsbetter-1.png' },
+        { userName: '고유라', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-1.png' },
+        { userName: '진저', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-2.png' },
       ]
     },
     {
@@ -149,6 +163,9 @@ const state = {
         { userName: '김수연', text: '빨리 배달해주세요 현기증나요' },
       ],
       reviews: [
+        { userName: '시즈니', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-soap.png' },
+        { userName: '김수연', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-ph.png' },
+        { userName: '고유라', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-toun28-kit.png' },
       ]
     },
     {
@@ -177,6 +194,10 @@ const state = {
         { userName: '박상욱', text: '리뷰 보니까 더 사고 싶다' },
       ],
       reviews: [
+        { userName: '시즈니', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-eatsbetter-1.png' },
+        { userName: '김수연', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-eatsbetter-2.png' },
+        { userName: '고유라', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-1.png' },
+        { userName: '진저', image: 'https://seasoning.s3.ap-northeast-2.amazonaws.com/review-altdif-2.png' },
       ]
     },
   ],
